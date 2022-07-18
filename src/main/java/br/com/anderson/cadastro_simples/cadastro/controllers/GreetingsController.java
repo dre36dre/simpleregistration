@@ -37,9 +37,12 @@ private UsuarioRepository usuarioRepository;
     @RequestMapping(value = "/sucesso/{nome}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public String retornaSucesso(@PathVariable String nome) {
-    Usuario usuario=new Usuario();
-    usuario.setNome(nome);
-       usuarioRepository.save(usuario); //grava no BD
-       return "Estou progredindo " + nome + "!";
+    	
+    	Usuario usuario=new Usuario();
+    	usuario.setNome(nome);
+       
+    	usuarioRepository.save(usuario); //grava no BD
+       
+    	return "Estou progredindo " + nome ;
 }
 }
