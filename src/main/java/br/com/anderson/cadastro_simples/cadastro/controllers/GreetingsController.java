@@ -65,6 +65,8 @@ private UsuarioRepository usuarioRepository;
     	return new ResponseEntity<List<Usuario>>(usuarios,HttpStatus.OK);
     }
     
+    
+//   Método Salvar
     @PostMapping(value="salvar") //mapeia a url
     @ResponseBody //descrição da resposta
     public ResponseEntity<Usuario> salvar(@RequestBody Usuario usuario){//recebe os dados para salvar 
@@ -82,7 +84,7 @@ private UsuarioRepository usuarioRepository;
     	Usuario user= usuarioRepository.saveAndFlush(usuario);    	
     	return new ResponseEntity<Usuario>(user, HttpStatus.OK);    }
     
-    
+//    Método deletar
     @DeleteMapping(value="deletar") //mapeia a url
     @ResponseBody //descrição da resposta
     public ResponseEntity<String> deletar(@RequestParam Long userId){//recebe os dados para deletar 
@@ -93,8 +95,16 @@ private UsuarioRepository usuarioRepository;
 // método pesquisar
 @GetMapping(value="buscaruserid") //mapeia a url
 @ResponseBody //descrição da resposta
-public ResponseEntity<Usuario> buscaruserid(@RequestParam(name="iduser") Long iduser){//recebe os dados para deletar 
+public ResponseEntity<Usuario> buscaruserid(@RequestParam(name="iduser") Long iduser){//recebe o id para pesquisar 
 	
 	Usuario usuario=usuarioRepository.findById(iduser).get();    	
 	return new ResponseEntity<Usuario>(usuario,  HttpStatus.OK);    }
+
+@GetMapping(value="buscarPornome") //mapeia a url
+@ResponseBody //descrição da resposta
+public ResponseEntity<List<Usuario>> buscarPorNome(@RequestParam(name="name") String name){//recebe os dados para consultar 
+
+	List<Usuario> usuario=usuarioRepository.buscarPorNome(name);
+	 
+	return new ResponseEntity<List<Usuario>>(usuario,  HttpStatus.OK);    }
 }
