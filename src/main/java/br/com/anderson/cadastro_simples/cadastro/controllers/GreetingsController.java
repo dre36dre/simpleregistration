@@ -104,7 +104,7 @@ public ResponseEntity<Usuario> buscaruserid(@RequestParam(name="iduser") Long id
 @ResponseBody //descrição da resposta
 public ResponseEntity<List<Usuario>> buscarPorNome(@RequestParam(name="name") String name){//recebe os dados para consultar 
 
-	List<Usuario> usuario=usuarioRepository.buscarPorNome(name);
+	List<Usuario> usuario=usuarioRepository.buscarPorNome(name.trim());
 	 
 	return new ResponseEntity<List<Usuario>>(usuario,  HttpStatus.OK);    }
 }
