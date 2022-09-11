@@ -22,7 +22,7 @@ import br.com.anderson.cadastro_simples.cadastro.repository.UsuarioRepository;
 import br.com.anderson.model.Usuario;
 
 /**
- *
+ *s
  * A sample greetings controller to return greeting text
  */
 @RestController
@@ -38,11 +38,11 @@ private UsuarioRepository usuarioRepository;
      * @param name the name to greet
      * @return greeting text
      */
-    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.OK)
-    public String greetingText(@PathVariable String name) {
-        return "Eu sou capaz " + name + "!";
-    }
+//    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
+//    @ResponseStatus(HttpStatus.OK)
+//    public String greetingText(@PathVariable String name) {
+//        return "Eu sou capaz " + name + "!";
+//    }
     
     @RequestMapping(value = "/sucesso/{nome}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
@@ -104,7 +104,6 @@ public ResponseEntity<Usuario> buscaruserid(@RequestParam(name="iduser") Long id
 @ResponseBody //descrição da resposta
 public ResponseEntity<List<Usuario>> buscarPorNome(@RequestParam(name="name") String name){//recebe os dados para consultar 
 
-	List<Usuario> usuario=usuarioRepository.buscarPorNome(name.trim());
-	 
+	List<Usuario> usuario=usuarioRepository.buscarPorNome(name.trim().toUpperCase()); 
 	return new ResponseEntity<List<Usuario>>(usuario,  HttpStatus.OK);    }
 }
